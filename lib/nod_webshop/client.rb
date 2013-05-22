@@ -26,8 +26,6 @@ module NodWebshop
       }
     end
 
-    require 'pry'
-
     def headers(verb="get", path='', qs={}, custom={})
       content_type = if self.format == :json
                        'application/json'
