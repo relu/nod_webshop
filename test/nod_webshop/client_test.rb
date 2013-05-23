@@ -76,7 +76,7 @@ describe NodWebshop::Client do
       VCR.use_cassette "get_all_products" do
         prod = @client.products
 
-        prod.must_be_instance_of Hash
+        prod.must_be_instance_of Array
         prod.wont_be_empty
       end
     end
@@ -91,7 +91,7 @@ describe NodWebshop::Client do
 
     it "should correctly retrieve orders" do
       VCR.use_cassette "get_all_orders" do
-        orders = @client.orders["orders"]
+        orders = @client.orders
         orders.must_be_instance_of Array
         orders.wont_be_empty
       end
@@ -124,7 +124,7 @@ describe NodWebshop::Client do
 
     it "should correctly retrieve payments" do
       VCR.use_cassette "get_all_payments" do
-        payments = @client.payments["payments"]
+        payments = @client.payments
         payments.must_be_instance_of Array
         payments.wont_be_empty
       end
