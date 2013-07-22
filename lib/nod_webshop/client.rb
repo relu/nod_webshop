@@ -2,7 +2,6 @@ require 'httparty'
 require 'addressable/uri'
 require 'base64'
 require 'openssl'
-require 'ostruct'
 
 module NodWebshop
   class Client
@@ -80,11 +79,7 @@ module NodWebshop
             obj = first
           end
 
-          if obj.is_a?(Array)
-            obj.map { |x| OpenStruct.new(x) }
-          else
-            OpenStruct.new(obj)
-          end
+          obj
         end
       EVAL
     end
@@ -124,13 +119,13 @@ module NodWebshop
     def products_full_feed
       uri = '/products/full-feed/'
       r = self.class.get(uri, :headers => self.headers("get", uri))
-      r["products"].map { |x| OpenStruct.new(x) }
+      r["products"]
     end
 
     def exchange_rates
       uri = '/exchange-rates/'
       r = self.class.get(uri, :headers => self.headers("get", uri))
-      r["exchange_rates"].map { |x| OpenStruct.new(x) }
+      r["exchange_rates"]
     end
 
     private
